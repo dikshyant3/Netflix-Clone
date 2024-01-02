@@ -1,5 +1,6 @@
 'use client'
 import { useCallback, useState } from 'react';
+import axios from 'axios';
 // import { NextPageContext } from 'next';
 import Input from '@/components/Input';
 
@@ -16,6 +17,18 @@ const Auth = () => {
     setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login');
   }, []);
 
+  const register = useCallback(async() => {
+    try {
+      await axios.post('/api/register',{
+        email,
+        name,
+        password
+      })
+    } catch (error) {
+      console.log(error);
+      
+    }
+  },[])
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
