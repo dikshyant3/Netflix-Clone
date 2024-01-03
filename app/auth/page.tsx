@@ -41,10 +41,11 @@ const Auth = () => {
         email,
         name,
         password
-      },{
+      }, {
         headers: {
           "Content-Type": "application/json",
-        },}
+        },
+      }
       )
       login()
     } catch (error) {
@@ -93,11 +94,11 @@ const Auth = () => {
             </button>
 
             <div className="flex items-center justify-center mt-8 gap-4 cursor-pointer">
-              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
-                <FcGoogle size={30}/>
+              <div onClick={() => signIn('google', { callbackUrl: '/' })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
+                <FcGoogle size={30} />
               </div>
-              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
-                <FaGithub size={30}/>
+              <div onClick={() => signIn('github', { callbackUrl: '/' })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
+                <FaGithub size={30} />
               </div>
 
             </div>
