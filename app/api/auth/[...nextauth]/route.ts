@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { compare } from "bcrypt";
+import prismadb from "@/lib/prismadb";
+
 
 const handler = NextAuth({
   providers: [
@@ -15,7 +17,8 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || credentials?.password) {
+        // console.log(credentials);
+        if (!credentials?.email || !credentials?.password) {
           throw new Error("Credentials are required!!!");
         }
         const user = await prismadb.user.findUnique({
@@ -34,23 +37,23 @@ const handler = NextAuth({
         );
 
         if (!isCorrectPassword) {
-            throw new Error("Password is incorrect!!!")
+          throw new Error("Password is incorrect!!!");
         }
-        return user
+        return user;
       },
     }),
   ],
-  pages:{
-    signIn: '/auth'
+  pages: {
+    signIn: "/auth",
   },
-  debug: process.env.NODE_ENV === 'development',
-  session:{
-    strategy: 'jwt',
+  debug: process.env.NODE_ENV === "development",
+  session: {
+    strategy: "jwt",
   },
-  jwt:{
-    secret: 'process.env.NEXTAUTH_JWT_SECRET',
+  jwt: {
+    secret: "process.env.NEXTAUTH_JWT_SECRET",
   },
-  secret: 'process.env.NEXTAUTH_SECRET'
+  secret: "process.env.NEXTAUTH_SECRET",
 });
 
 export { handler as GET, handler as POST };
