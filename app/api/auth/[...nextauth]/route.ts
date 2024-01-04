@@ -1,21 +1,20 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { compare } from "bcrypt";
 import prismadb from "@/lib/prismadb";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
-
-const handler = NextAuth({
+export const authOptions:AuthOptions = {
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_ID || '',
-      clientSecret: process.env.GITHUB_SECRET || ''
+      clientId: (process.env.GITHUB_ID as string) || "",
+      clientSecret: (process.env.GITHUB_SECRET as string) || "",
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID || '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
+      clientId: (process.env.GOOGLE_ID as string) || "",
+      clientSecret: (process.env.GOOGLE_CLIENT_SECRET as string) || "",
     }),
     Credentials({
       id: "credentials",
@@ -56,19 +55,19 @@ const handler = NextAuth({
   ],
   pages: {
     signIn: "/auth",
+    error: "/auth",
   },
   debug: process.env.NODE_ENV === "development",
   adapter: PrismaAdapter(prismadb),
+  jwt: {
+    secret: process.env.NEXTAUTH_JWT_SECRET,
+  },
   session: {
     strategy: "jwt",
   },
-  jwt: {
-    secret: "process.env.NEXTAUTH_JWT_SECRET",
-  },
-  secret: "process.env.NEXTAUTH_SECRET",
-});
+  secret: process.env.NEXTAUTH_SECRET,
+};
 
-console.log('NextAuth configuration:', handler);
-// console.log('Response: ',responseData)
 
+const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST };

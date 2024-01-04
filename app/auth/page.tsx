@@ -3,10 +3,9 @@ import { useCallback, useState } from 'react';
 import axios from 'axios';
 import Input from '@/components/Input';
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-
 
 
 const Auth = () => {
@@ -14,6 +13,7 @@ const Auth = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const searchParams = useSearchParams();
 
   const [variant, setVariant] = useState('login');
 
@@ -27,17 +27,18 @@ const Auth = () => {
         email,
         password,
         redirect: false,
-        callbackUrl: '/'
+        callbackUrl: '/',
       })
       router.push('/')
-    } catch (error) {
+    }
+    catch (error) {
       console.log(error)
     }
   }, [email, password, router])
 
   const register = useCallback(async () => {
     try {
-      const response = await axios.post('api/register', {
+      await axios.post('api/register', {
         email,
         name,
         password
@@ -94,10 +95,14 @@ const Auth = () => {
             </button>
 
             <div className="flex items-center justify-center mt-8 gap-4 cursor-pointer">
-              <div onClick={() => signIn('google', { callbackUrl: '/' })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
+              <div onClick={() => signIn('google', {
+                callbackUrl: searchParams.get("callbackUrl") || "/",
+              })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
                 <FcGoogle size={30} />
               </div>
-              <div onClick={() => signIn('github',{ callbackUrl: '/' })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
+              <div onClick={() => signIn('github', {
+                callbackUrl: searchParams.get("callbackUrl") || "/",
+              })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
                 <FaGithub size={30} />
               </div>
 
