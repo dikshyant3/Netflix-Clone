@@ -7,7 +7,6 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 
 
-
 const handler = NextAuth({
   providers: [
     GitHubProvider({
@@ -15,7 +14,7 @@ const handler = NextAuth({
       clientSecret: process.env.GITHUB_SECRET || ''
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientId: process.env.GOOGLE_ID || '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
     }),
     Credentials({
@@ -68,5 +67,8 @@ const handler = NextAuth({
   },
   secret: "process.env.NEXTAUTH_SECRET",
 });
+
+console.log('NextAuth configuration:', handler);
+// console.log('Response: ',responseData)
 
 export { handler as GET, handler as POST };

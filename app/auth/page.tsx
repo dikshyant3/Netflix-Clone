@@ -97,7 +97,7 @@ const Auth = () => {
               <div onClick={() => signIn('google', { callbackUrl: '/' })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
                 <FcGoogle size={30} />
               </div>
-              <div onClick={() => signIn('github', { callbackUrl: '/' })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
+              <div onClick={() => signIn('github',{ callbackUrl: '/' })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
                 <FaGithub size={30} />
               </div>
 
