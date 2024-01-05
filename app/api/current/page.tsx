@@ -1,16 +1,17 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-
+import type { NextApiRequest,NextApiResponse } from "next";
 import serverAuth from "@/lib/serverAuth";
 
-export default async function handler(req:NextRequest){
-    if(req.method !== "GET"){
-        return NextResponse.json('HTTP method Not Allowed',{status:405});
-    }
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const currentUser = await serverAuth(req)
+        if (req.method !== 'GET') {
+            return res.status(405).json("HTTP method not supported");
+        }
+
+        const { currentUser } = await serverAuth(req, res);
+
+        return res.status(200).json({ currentUser });
     } catch (error) {
         console.log(error);
-        return NextResponse.json(error,{status:400});
+        return res.status(500).json({ error })
     }
 }

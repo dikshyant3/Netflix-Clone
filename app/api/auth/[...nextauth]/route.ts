@@ -1,10 +1,26 @@
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth, { AuthOptions, DefaultSession } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { compare } from "bcrypt";
 import prismadb from "@/lib/prismadb";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      provider?: string;
+      id?: string;
+    } & DefaultSession["user"];
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    provider?: string;
+    id?: string;
+  }
+}
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prismadb),
@@ -54,6 +70,18 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    jwt: async ({ token, user, account }) => {
+      if (account) token.provider = account.provider;
+      if (user) token.id = user.id;
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.user.provider = token.provider;
+      session.user.id = token.id;
+      return session;
+    },
+  },
   pages: {
     signIn: "/auth",
     error: "/auth",

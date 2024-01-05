@@ -1,4 +1,6 @@
 'use client'
+
+
 import { useCallback, useState } from 'react';
 import axios from 'axios';
 import Input from '@/components/Input';
@@ -27,9 +29,9 @@ const Auth = () => {
         email,
         password,
         redirect: false,
-        callbackUrl: '/',
+        callbackUrl: '/profiles',
       })
-      router.push('/')
+      router.push('/profiles')
     }
     catch (error) {
       console.log(error)
@@ -96,12 +98,12 @@ const Auth = () => {
 
             <div className="flex items-center justify-center mt-8 gap-4 cursor-pointer">
               <div onClick={() => signIn('google', {
-                callbackUrl: searchParams.get("callbackUrl") || "/",
+                callbackUrl: searchParams.get("callbackUrl") || "/profiles",
               })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
                 <FcGoogle size={30} />
               </div>
               <div onClick={() => signIn('github', {
-                callbackUrl: searchParams.get("callbackUrl") || "/",
+                callbackUrl: searchParams.get("callbackUrl") || "/profiles",
               })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
                 <FaGithub size={30} />
               </div>
