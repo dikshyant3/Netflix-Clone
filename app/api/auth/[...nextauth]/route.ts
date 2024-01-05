@@ -6,7 +6,8 @@ import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
-export const authOptions:AuthOptions = {
+export const authOptions: AuthOptions = {
+  adapter: PrismaAdapter(prismadb),
   providers: [
     GitHubProvider({
       clientId: (process.env.GITHUB_ID as string) || "",
@@ -58,7 +59,6 @@ export const authOptions:AuthOptions = {
     error: "/auth",
   },
   debug: process.env.NODE_ENV === "development",
-  adapter: PrismaAdapter(prismadb),
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },
@@ -68,6 +68,5 @@ export const authOptions:AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-
-const handler = NextAuth(authOptions)
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
