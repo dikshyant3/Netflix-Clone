@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth"
 import {redirect} from "next/navigation"
 import { authOptions } from "./api/auth/[...nextauth]/route"
+import Navbar from "@/components/Navbar"
 
 
 export default async function Home() {
@@ -12,11 +13,7 @@ export default async function Home() {
 
   return (
   <>
-    
-    <h1 className='text-4xl text-green-500'>
-      Netflix Clone
-    </h1>
-    {/* <button type="button" onClick={()=>signOut()} className='h-10 bg-white text-black'>Logout</button> */}
+    <Navbar/>
   </>
 
   )
