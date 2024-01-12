@@ -4,6 +4,7 @@ import React, { useCallback, useState } from 'react'
 import NavbarItem from './NavbarItem'
 import { BsChevronDown, BsSearch, BsBell } from "react-icons/bs";
 import MobileMenu from './MobileMenu';
+import AccountMenu from './AccountMenu';
 
 
 const Navbar = () => {
@@ -42,6 +43,8 @@ const Navbar = () => {
                         <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
                             <img src="/images/default-blue.png" alt="Profile" />
                         </div>
+                        <BsChevronDown className={`text-white transition ${showMobileMenu ? 'rotate-180' : 'rotate-0'}`} />
+                        <AccountMenu visible/>
                     </div>
 
                 </div>
