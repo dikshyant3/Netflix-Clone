@@ -1,3 +1,5 @@
+import { signOut } from 'next-auth/react'
+import { MdLogout } from "react-icons/md";
 import React from 'react'
 
 interface AccountMenuProps {
@@ -17,6 +19,11 @@ const AccountMenu = ({ visible }: AccountMenuProps) => {
                     <p className="text-white text-sm group-hover/item:underline">
                         Username
                     </p>
+                </div>
+                <hr />
+                <div onClick={()=>signOut()} className="px-3 flex items-center">
+                    <MdLogout className="text-white h-6 w-6"/>
+                    <p className="pl-4 text-white text-center">Sign Out</p>
                 </div>
             </div>
         </div>
