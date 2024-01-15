@@ -2,6 +2,8 @@ import { getServerSession } from "next-auth"
 import {redirect} from "next/navigation"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import Navbar from "@/components/Navbar"
+import Billboard from "@/components/Billboard"
+
 
 
 export default async function Home() {
@@ -14,6 +16,7 @@ export default async function Home() {
   return (
   <>
     <Navbar/>
+    <Billboard/>
   </>
 
   )
