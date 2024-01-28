@@ -1,15 +1,26 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+"use client"
+
 import { signOut } from 'next-auth/react'
 import { MdLogout } from "react-icons/md";
 import React from 'react'
+// import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+// import { getServerSession } from 'next-auth/next'
+import useCurrentUser from '@/hooks/useCurrentUser';
+
 
 interface AccountMenuProps {
-    visible: boolean
+    visible?: boolean
 }
 
 const AccountMenu = ({ visible }: AccountMenuProps) => {
+    
     if (!visible) {
         return null
     }
+    // const session =  getServerSession(authOptions)
+    const { data: currentUser } = useCurrentUser();
+
 
     return (
         <div className='absolute top-14 right-0 py-5 bg-black w-56 flex flex-col border-2 border-gray-800 '>
@@ -17,7 +28,7 @@ const AccountMenu = ({ visible }: AccountMenuProps) => {
                 <div className="w-full px-3 group/item flex flex-row gap-3 items-center">
                     <img className="w-8 rounded-md" src="/images/default-blue.png" alt="Profile" />
                     <p className="text-white text-sm group-hover/item:underline">
-                        Username
+                        {currentUser?.name}
                     </p>
                 </div>
                 <hr />

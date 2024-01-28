@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
-
 import prismadb from '@/lib/prismadb';
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
