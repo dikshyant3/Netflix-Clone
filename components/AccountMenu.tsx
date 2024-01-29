@@ -20,6 +20,7 @@ const AccountMenu = ({ visible }: AccountMenuProps) => {
     }
     // const session =  getServerSession(authOptions)
     const { data: currentUser } = useCurrentUser();
+    
 
 
     return (
@@ -28,7 +29,7 @@ const AccountMenu = ({ visible }: AccountMenuProps) => {
                 <div className="w-full px-3 group/item flex flex-row gap-3 items-center">
                     <img className="w-8 rounded-md" src="/images/default-blue.png" alt="Profile" />
                     <p className="text-white text-sm group-hover/item:underline">
-                        {currentUser?.name}
+                        {currentUser?.name || "Username"}
                     </p>
                 </div>
                 <hr />
