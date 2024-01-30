@@ -7,7 +7,7 @@ const useBillboard = () => {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
    });
-  debugger
+  // debugger
   console.log(data)
   return {
     data,
