@@ -6,7 +6,7 @@ import { IoMdInformationCircleOutline } from "react-icons/io";
 
 const Billboard = () => {
     const {data} = useBillboard();
-    console.log(data);
+    // console.log(data);
     return (
         <div className="relative h-[56.25vw]">
             <video

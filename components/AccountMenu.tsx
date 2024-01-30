@@ -4,10 +4,7 @@
 import { signOut } from 'next-auth/react'
 import { MdLogout } from "react-icons/md";
 import React from 'react'
-// import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-// import { getServerSession } from 'next-auth/next'
 import useCurrentUser from '@/hooks/useCurrentUser';
-
 
 interface AccountMenuProps {
     visible?: boolean
@@ -18,11 +15,9 @@ const AccountMenu = ({ visible }: AccountMenuProps) => {
     if (!visible) {
         return null
     }
-    // const session =  getServerSession(authOptions)
+
     const { data: currentUser } = useCurrentUser();
     
-
-
     return (
         <div className='absolute top-14 right-0 py-5 bg-black w-56 flex flex-col border-2 border-gray-800 '>
             <div className="flex flex-col gap-3">

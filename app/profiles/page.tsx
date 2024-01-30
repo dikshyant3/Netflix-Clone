@@ -3,37 +3,12 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getServerSession } from 'next-auth/next'
 import Link from 'next/link'
 
-
-// export async function getServerSideProps() {
-//     const session = await getServerSession(authOptions)
-
-
-//     if (!session) {
-//         return {
-//             redirect: {
-//                 destination: '/auth',
-//                 permanent: false,
-//             }
-//         }
-//     }
-//     return { props: { session } }
-// }
-
-const Profiles = async() => {
-    // const [isAuthenticated, setIsAuthenticated] = useState(false)
-    // const {data:session} = useSession({
-    //     required:true,
-    //     onUnauthenticated(){
-    //         setIsAuthenticated(false)
-    //         redirect('/auth')
-    //     }
-    // })
-
+const Profiles = async () => {
     const session = await getServerSession(authOptions)
 
-  if(!session){
-    redirect('/auth')
-  }
+    if (!session) {
+        redirect('/auth')
+    }
     // const router = useRouter()
     return (
         <div className='flex items-center justify-center h-full'>
