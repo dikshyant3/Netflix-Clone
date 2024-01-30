@@ -1,4 +1,4 @@
-import useSWR from 'swr'
+import useSWR from "swr";
 import fetcher from '@/lib/fetcher';
 
 const useBillboard = () => {
@@ -7,6 +7,8 @@ const useBillboard = () => {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
    });
+  debugger
+  console.log(data)
   return {
     data,
     error,

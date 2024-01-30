@@ -1,14 +1,16 @@
 "use client";
 
 import useBillboard from "@/hooks/useBillboard";
+import { IoMdInformationCircleOutline } from "react-icons/io";
+
 
 const Billboard = () => {
-    const data = useBillboard();
+    const {data} = useBillboard();
     console.log(data);
     return (
         <div className="relative h-[56.25vw]">
             <video
-                className="w-full h-[56.25vw] brightness-[60%] object-cover transition duration-500"
+                className="w-full h-[56.25vw] object-cover brightness-[60%] transition duration-500"
                 poster={data?.thumbnailUrl}
                 autoPlay
                 muted
@@ -23,7 +25,10 @@ const Billboard = () => {
                     {data?.description}
                 </p>
                 <div className="flex items-center mt-3 gap-3 md:mt-4">
-                    <button className="bg-white bg-opacity-30 text-white flex items-center rounded-md font-semibold py-1 md:py-2 px-2 md:px-4 w-auto text-sm transition lg:text-lg hover:bg-opacity-20">More Info</button>
+                    <button className="bg-white bg-opacity-30 text-white flex items-center rounded-md font-semibold py-1 md:py-2 px-2 md:px-4 w-auto text-sm transition lg:text-lg hover:bg-opacity-20">
+                    <IoMdInformationCircleOutline className="mr-2"/>
+                        More Info
+                    </button>
                 </div>
             </div>
         </div>
