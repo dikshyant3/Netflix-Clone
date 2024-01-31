@@ -1,14 +1,15 @@
 import serverAuth from "@/lib/serverAuth";
 import { without } from "lodash";
 import prismadb from "@/lib/prismadb";
-import useBillboard from "@/hooks/useBillboard";
+// import useBillboard from "@/hooks/useBillboard";
+import { NextRequest } from "next/server";
 
-export async function DELETE() {
-  const { data } = useBillboard();
+export async function DELETE(req:NextRequest) {
+  // const { data } = useBillboard();
   try {
     const { currentUser } = await serverAuth();
-    const movieId = data.id;
-
+    const {movieId} = await req.json();
+    console.log("MovieId: ", movieId);
     const existingMovie = await prismadb.movie.findUnique({
       where: {
         id: movieId,
@@ -17,18 +18,19 @@ export async function DELETE() {
     if (!existingMovie) {
       throw new Error("Invalid ID");
     }
-    const updatedFavoriteIds = without(currentUser.favoriteIds, movieId);
+    const updatedFavoriteId = without(currentUser.favoriteId, movieId);
     const updatedUser = await prismadb.user.update({
       where: {
         email: currentUser.email || "",
       },
       data: {
-        favoriteIds: updatedFavoriteIds,
+        favoriteId: updatedFavoriteId,
       },
     });
+    console.log(updatedFavoriteId, updatedUser);
     return Response.json(updatedUser, { status: 200 });
   } catch (error) {
     console.log(error);
-    Response.json({ error, status: 500 });
+    return Response.json({ error, status: 500 });
   }
 }

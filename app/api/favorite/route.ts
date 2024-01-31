@@ -1,19 +1,25 @@
 import serverAuth from "@/lib/serverAuth";
-import { without } from "lodash";
 import prismadb from "@/lib/prismadb";
 import useBillboard from "@/hooks/useBillboard";
+import { NextRequest } from "next/server";
 
-export async function POST() {
-  const { data } = useBillboard();
+export async function POST(req: NextRequest) {
+  console.log("Post function called");
+  // const { data } = useBillboard();
+  // console.log("data",data);
   try {
     const { currentUser } = await serverAuth();
-    const movieId = data.id;
+    const {movieId} = await req.json();
+    console.log(movieId);
 
     const existingMovie = await prismadb.movie.findUnique({
       where: {
         id: movieId,
       },
     });
+    console.log("Existing Movie: ", existingMovie);
+    console.log(typeof existingMovie);
+
     if (!existingMovie) {
       throw new Error("Invalid ID");
     }
@@ -22,15 +28,15 @@ export async function POST() {
         email: currentUser.email || "",
       },
       data: {
-        favoriteIds: {
+        favoriteId: {
           push: movieId,
         },
       },
     });
+    console.log("User", user);
     return Response.json(user, { status: 200 });
   } catch (error) {
     console.log(error);
-    Response.json({error,status:500})
+    Response.json({ error, status: 500 });
   }
 }
-
