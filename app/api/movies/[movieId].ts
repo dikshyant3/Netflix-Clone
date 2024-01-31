@@ -9,7 +9,7 @@ export default async function handler(){
     try {
         await serverAuth()
         const movieId = data.id
-        console.log(movieId)
+        // console.log(movieId)
         if (typeof movieId !== 'string'){
             throw new Error('Invalid Id')
         }
