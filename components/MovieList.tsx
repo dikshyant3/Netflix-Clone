@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { isEmpty } from 'lodash'
+import MovieCard from './MovieCard';
 // import useMovies from "@/hooks/useMovieList"
 
 
@@ -10,7 +11,7 @@ interface MovieListProps {
     title: string;
 }
 
-function MovieList({data,title}: MovieListProps) {
+function MovieList({ data, title }: MovieListProps) {
     if (isEmpty(data)) {
         return null;
     }
@@ -24,11 +25,11 @@ function MovieList({data,title}: MovieListProps) {
                 </p>
                 <div className='grid grid-cols-4 gap-2'>
                     {data.map((movie) => (
-                        <div key={movie.id}>movie</div>
+                        <MovieCard key={movie.id} data={movie} />
                     ))}
                 </div>
             </div>
-            
+
         </div>
     )
 }
