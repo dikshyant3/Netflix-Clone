@@ -1,6 +1,6 @@
 import React from "react";
 import { FaPlay } from "react-icons/fa6";
-import { MdFavoriteBorder } from "react-icons/md";
+import FavoriteButton from "./FavoriteButton";
 
 // import Image from 'next/image';
 
@@ -53,7 +53,7 @@ const MovieCard = ({ data }: MovieCardProps) => {
                         <div className="cursor-pointer w-6 h-6 bg-white rounded-full flex items-center justify-center transition lg:w-10 lg:h-10 hover:bg-neutral-300" onClick={() => { }}>
                             <FaPlay size={20} />
                         </div>
-                        <MdFavoriteBorder className="text-white" size={30}/>
+                        <FavoriteButton movieId={data?.id} />
                     </div>
                     <p className="text-green-400 font-semibold mt-5">
                         New <span className="text-white ">2024</span>
