@@ -7,7 +7,7 @@ const useMovies = () => {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   });
-  console.log(data)
+  // console.log(data)
   return {
     data,
     error,

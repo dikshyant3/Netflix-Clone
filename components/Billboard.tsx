@@ -21,7 +21,7 @@ const Billboard = () => {
                 <p className="text-white text-xl h-full w-[50%] font-bold drop-shadow-xl md:text-5xl lg:text-6xl">
                     {data?.title}
                 </p>
-                <p className="text-white text-sm mt-4 h-full w-[90%] drop-shadow-xl md:text-lg md:mt-8 md:w-[80%] lg:w-[50%]">
+                <p className="text-white text-[8px] mt-4 h-full w-[90%] drop-shadow-xl md:text-lg md:mt-8 md:w-[80%] lg:w-[50%]">
                     {data?.description}
                 </p>
                 <div className="flex items-center mt-3 gap-3 md:mt-4">
