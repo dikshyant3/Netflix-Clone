@@ -30,7 +30,7 @@ export async function POST() {
     return Response.json(user, { status: 200 });
   } catch (error) {
     console.log(error);
-    Response.json({error,status:400})
+    Response.json({error,status:500})
   }
 }
 

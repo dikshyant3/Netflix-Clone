@@ -29,6 +29,6 @@ export async function DELETE() {
     return Response.json(updatedUser, { status: 200 });
   } catch (error) {
     console.log(error);
-    Response.json({ error, status: 400 });
+    Response.json({ error, status: 500 });
   }
 }
