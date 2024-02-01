@@ -14,56 +14,51 @@ const FavoriteButton = ({ movieId }: FavoriteButtonProps) => {
     const { mutate: mutateFavorites } = useFavorite();
     const { data: currentUser, mutate } = useCurrentUser();
 
+    const favoriteIds = useMemo(() => (currentUser?.favoriteId || []), [currentUser]);
 
-    const isFavorite = useMemo(() => {
-        const list = currentUser?.favoriteId || [];
-        return list.includes(movieId);
-    }, [currentUser, movieId]);
+    const isFavorite = useMemo(() => favoriteIds.includes(movieId), [favoriteIds, movieId]);
+    // debugger
+    // console.log(isFavorite)
 
-    console.log("Favorite: ", isFavorite);
-
-
-    const toggleFavorites = useCallback(async () => {
+    const addToFavorites = useCallback(async () => {
         try {
             let response;
-
-
-            // if (!currentUser.favoriteId) {
-            //     currentUser.favoriteId = [];
-            // }
-
-            // console.log("list: ", currentUser.favoriteId);
-
-
-            if (!isFavorite) {
-                response = await axios.post("/api/favorite", { movieId });
-                currentUser.favoriteId.push(movieId);
-            } else {
-                response = await axios.delete(`/api/favorite/${movieId}`);
-                currentUser.favoriteId = currentUser.favoriteId.filter((id: string) => id !== movieId);
-            }
-            console.log(currentUser.favoriteId);
-            mutate({
-                ...currentUser,
-            });
+            response = await axios.post("/api/favorite", { movieId });
+            favoriteIds.push(movieId);
+            mutate({ ...currentUser, favoriteId: favoriteIds });
             mutateFavorites();
         } catch (error) {
             console.error("Error toggling favorites:", error);
         }
-    }, [movieId, isFavorite, currentUser, mutate, mutateFavorites]);
+    }, [movieId, currentUser, favoriteIds, mutate, mutateFavorites]);
+
+    const removeFromFavorites = useCallback(async () => {
+        try {
+            let response;
+            response = await axios.delete(`/api/favorite/${movieId}`, { data: { movieId } });
+            favoriteIds.splice(favoriteIds.indexOf(movieId), 1);
+            mutate({ ...currentUser, favoriteId: favoriteIds });
+            mutateFavorites();
+        } catch (error) {
+            console.error("Error toggling favorites:", error);
+        }
+    }, [movieId, currentUser, favoriteIds, mutate, mutateFavorites]);
+
+    const Icon = isFavorite ? AiOutlineCheck : AiOutlinePlus
 
     return (
-        <div
-            onClick={toggleFavorites}
+        <div onClick={isFavorite ? removeFromFavorites : addToFavorites}
             className="w-6 h-6 group/item flex items-center justify-center cursor-pointer border-2 border-white rounded-full transition hover:border-neutral-300 lg:w-10 lg:h-10 "
         >
-            {isFavorite ? (
+            {/* {isFavorite ? (
                 <AiOutlineCheck className="text-white" size={25} />
             ) : (
                 <AiOutlinePlus className="text-white" size={25} />
-            )}
+            )} */}
+            <Icon className="text-white" size={25} />
         </div>
     );
 };
 
 export default FavoriteButton;
+

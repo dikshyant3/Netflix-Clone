@@ -1,6 +1,6 @@
 import serverAuth from "@/lib/serverAuth";
 import prismadb from "@/lib/prismadb";
-import useBillboard from "@/hooks/useBillboard";
+// import useBillboard from "@/hooks/useBillboard";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
