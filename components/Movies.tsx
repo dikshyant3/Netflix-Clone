@@ -2,10 +2,10 @@
 
 import useFavorite from "@/hooks/useFavorite";
 import MovieList from "./MovieList";
-import useMovies from "@/hooks/useMovieList"
+import useMovieList from "@/hooks/useMovieList"
 
 export default function Movies() {
-    const { data: movies } = useMovies()
+    const { data: movies } = useMovieList()
     const { data: favorites } = useFavorite()
 
     return (

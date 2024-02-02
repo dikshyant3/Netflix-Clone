@@ -21,7 +21,6 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <link rel="icon" href="/images/favicon.ico" sizes="any" />
-
           {children}
         </body>
       </html>

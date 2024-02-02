@@ -1,14 +1,15 @@
+import { NextRequest } from 'next/server';
 import prismadb from "@/lib/prismadb"
 import serverAuth from "@/lib/serverAuth"
-import useBillboard from "@/hooks/useBillboard";
+// import useBillboard from "@/hooks/useBillboard";
 
 
-export default async function handler(){
+export default async function handler(req:NextRequest){
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const {data} = useBillboard();
+    // const {data} = useBillboard();
     try {
         await serverAuth()
-        const movieId = data.id
+        const {movieId} = await req.json();
         // console.log(movieId)
         if (typeof movieId !== 'string'){
             throw new Error('Invalid Id')
