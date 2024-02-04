@@ -2,6 +2,8 @@ import useSWR from "swr";
 import fetcher from "@/lib/fetcher";
 
 const useMovie = (id?: string) => {
+  console.log("hook id", id);
+  debugger;
   const { data, error, isLoading } = useSWR(
     id ? `/api/movies/${id}` : null,
     fetcher,
@@ -11,6 +13,7 @@ const useMovie = (id?: string) => {
       revalidateOnFocus: false,
     }
   );
+  console.log(error);
   return {
     data,
     error,

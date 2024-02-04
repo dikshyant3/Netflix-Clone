@@ -1,6 +1,7 @@
 import React from "react";
 import { FaPlay } from "react-icons/fa6";
 import FavoriteButton from "./FavoriteButton";
+import { useRouter } from "next/navigation";
 
 // import Image from 'next/image';
 
@@ -9,6 +10,8 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ data }: MovieCardProps) => {
+    // console.log("MovieCardData",data);
+    const router = useRouter();
     return (
         <div className="group bg-zinc-900 col-span relative h-[12vw]">
             <img
@@ -50,7 +53,7 @@ const MovieCard = ({ data }: MovieCardProps) => {
                 />
                 <div className="z-10 bg-zinc-800 p-2 absolute w-full transition shadow-md rounded-b-md lg:p-4 ">
                     <div className="flex items-center gap-3">
-                        <div className="cursor-pointer w-6 h-6 bg-white rounded-full flex items-center justify-center transition lg:w-10 lg:h-10 hover:bg-neutral-300" onClick={() => { }}>
+                        <div className="cursor-pointer w-6 h-6 bg-white rounded-full flex items-center justify-center transition lg:w-10 lg:h-10 hover:bg-neutral-300" onClick={() => router.push(`/watch/${data?.id}`) }>
                             <FaPlay size={20} />
                         </div>
                         <FavoriteButton movieId={data?.id} />

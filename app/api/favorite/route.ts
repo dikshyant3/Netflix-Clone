@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
   try {
     const { currentUser } = await serverAuth();
     const {movieId} = await req.json();
-    console.log(movieId);
+    // console.log(movieId);
 
     const existingMovie = await prismadb.movie.findUnique({
       where: {
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         },
       },
     });
-    console.log("User", user);
+    // console.log("User", user);
     return Response.json(user, { status: 200 });
   } catch (error) {
     console.log(error);

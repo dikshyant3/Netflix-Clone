@@ -16,8 +16,8 @@ export async function GET() {
         id: userId,
       },
     });
-    console.log(user);
-    console.log(omit(user, ["hashedPassword", "createdAt", "updatedAt"]));
+    // console.log(user);
+    // console.log(omit(user, ["hashedPassword", "createdAt", "updatedAt"]));
     return Response.json({
       user: omit(user, ["hashedPassword", "createdAt", "updatedAt"]),
     });
