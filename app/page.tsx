@@ -4,10 +4,12 @@ import { authOptions } from "./api/auth/[...nextauth]/route"
 import Navbar from "@/components/Navbar"
 import Billboard from "@/components/Billboard"
 import Movies from "@/components/Movies"
+import Modal from "@/components/Modal"
 
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
+
 
   if (!session) {
     redirect('/auth')
@@ -15,6 +17,7 @@ export default async function Home() {
 
   return (
     <>
+      <Modal />
       <Navbar />
       <Billboard />
       <div className="pb-40">
