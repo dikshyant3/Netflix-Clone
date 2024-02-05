@@ -47,7 +47,7 @@ const InfoModal = ({ visible, onClose }: InfoModalProps) => {
                             <AiOutlineClose className="text-white" size={20} />
                         </div>
                         <div className="absolute bottom-[10%] left-10">
-                            <p className="text-white text-3xl font-bold mb-80 md:text-4xl lg:text-5xl">
+                            <p className="text-white text-3xl font-bold mb-8 md:text-4xl lg:text-5xl">
                                 {data?.title}
                             </p>
                             <div className="flex items-center gap-4">
@@ -57,15 +57,17 @@ const InfoModal = ({ visible, onClose }: InfoModalProps) => {
                         </div>
                     </div>
                     <div className="px-12 py-8">
-                        <p className="text-green-500 font-semibold text-lg">
-                            New
-                        </p>
-                        <p className="text-white text-lg">
-                            {data?.duration}
-                        </p>
-                        <p className="text-white text-lg">
-                            {data?.genre}
-                        </p>
+                        <div className="flex items-center gap-2 mb-8">
+                            <p className="text-green-400 font-semibold text-lg">
+                                New
+                            </p>
+                            <p className="text-white text-lg">
+                                {data?.duration}
+                            </p>
+                            <p className="text-white text-lg">
+                                {data?.genre}
+                            </p>
+                        </div>
                         <p className="text-white text-lg">
                             {data?.description}
                         </p>
