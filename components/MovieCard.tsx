@@ -2,7 +2,8 @@ import React from "react";
 import { FaPlay } from "react-icons/fa6";
 import FavoriteButton from "./FavoriteButton";
 import { useRouter } from "next/navigation";
-
+import useInfoModal from "@/hooks/useInfoModal";
+import { BiChevronDown } from "react-icons/bi"
 // import Image from 'next/image';
 
 interface MovieCardProps {
@@ -10,8 +11,8 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ data }: MovieCardProps) => {
-    // console.log("MovieCardData",data);
     const router = useRouter();
+    const { openModal } = useInfoModal();
     return (
         <div className="group bg-zinc-900 col-span relative h-[12vw]">
             <img
@@ -53,10 +54,13 @@ const MovieCard = ({ data }: MovieCardProps) => {
                 />
                 <div className="z-10 bg-zinc-800 p-2 absolute w-full transition shadow-md rounded-b-md lg:p-4 ">
                     <div className="flex items-center gap-3">
-                        <div className="cursor-pointer w-6 h-6 bg-white rounded-full flex items-center justify-center transition lg:w-10 lg:h-10 hover:bg-neutral-300" onClick={() => router.push(`/watch/${data?.id}`) }>
+                        <div className="cursor-pointer w-6 h-6 bg-white rounded-full flex items-center justify-center transition lg:w-10 lg:h-10 hover:bg-neutral-300" onClick={() => router.push(`/watch/${data?.id}`)}>
                             <FaPlay size={20} />
                         </div>
                         <FavoriteButton movieId={data?.id} />
+                        <div className="cursor-pointer flex items-center justify-center ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-2 border-white rounded-full transition hover:border-neutral-300">
+                            <BiChevronDown className="text-white group-hover/item:text-neutral-300" size={30} />
+                        </div>
                     </div>
                     <p className="text-green-400 font-semibold mt-5">
                         New <span className="text-white ">2024</span>
