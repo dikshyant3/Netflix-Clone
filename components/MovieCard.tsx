@@ -58,7 +58,7 @@ const MovieCard = ({ data }: MovieCardProps) => {
                             <FaPlay size={20} />
                         </div>
                         <FavoriteButton movieId={data?.id} />
-                        <div className="cursor-pointer flex items-center justify-center ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-2 border-white rounded-full transition hover:border-neutral-300">
+                        <div onClick={() => { openModal(data?.id) }} className="cursor-pointer flex items-center justify-center ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-2 border-white rounded-full transition hover:border-neutral-300">
                             <BiChevronDown className="text-white group-hover/item:text-neutral-300" size={30} />
                         </div>
                     </div>

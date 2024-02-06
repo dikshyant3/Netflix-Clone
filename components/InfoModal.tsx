@@ -57,7 +57,7 @@ const InfoModal = ({ visible, onClose }: InfoModalProps) => {
                         </div>
                     </div>
                     <div className="px-12 py-8">
-                        <div className="flex items-center gap-2 mb-8">
+                        <div className="flex items-center gap-4 mb-8">
                             <p className="text-green-400 font-semibold text-lg">
                                 New
                             </p>
