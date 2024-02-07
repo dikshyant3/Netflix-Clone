@@ -44,11 +44,7 @@ const Auth = () => {
         email,
         name,
         password
-      }, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      },
       )
       login()
     } catch (error) {

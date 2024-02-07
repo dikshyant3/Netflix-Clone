@@ -5,12 +5,8 @@ import serverAuth from "@/lib/serverAuth";
 
 export async function GET(req:NextRequest,{ params }: { params: { movieId: string } }) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  // const {data} = useBillboard();
-  console.log("Before try");
   try {
     await serverAuth();
-    // const movieId = params.movieId;
-    console.log("Params id:", params.movieId);
     if (typeof params.movieId !== "string") {
       throw new Error("Invalid Id");
     }
@@ -30,4 +26,4 @@ export async function GET(req:NextRequest,{ params }: { params: { movieId: strin
   }
 }
 
-// Need to get the movieId from the url
+

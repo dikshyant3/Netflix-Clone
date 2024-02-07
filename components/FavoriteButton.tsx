@@ -17,9 +17,6 @@ const FavoriteButton = ({ movieId }: FavoriteButtonProps) => {
     const favoriteIds = useMemo(() => (currentUser?.favoriteId || []), [currentUser]);
 
     const isFavorite = useMemo(() => favoriteIds.includes(movieId), [favoriteIds, movieId]);
-    // debugger
-    // console.log(isFavorite)
-
     const addToFavorites = useCallback(async () => {
         try {
             let response;

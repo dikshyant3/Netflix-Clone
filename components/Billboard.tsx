@@ -11,7 +11,6 @@ import useInfoModal from "@/hooks/useInfoModal";
 const Billboard = () => {
     const { data } = useBillboard();
     const { openModal } = useInfoModal()
-    // console.log("Billboard data",data);
     const handleModal = useCallback(() => {
         openModal(data?.id)
     }, [openModal, data?.id])

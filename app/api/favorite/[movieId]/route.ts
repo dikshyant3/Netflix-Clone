@@ -9,7 +9,6 @@ export async function DELETE(req:NextRequest) {
   try {
     const { currentUser } = await serverAuth();
     const {movieId} = await req.json();
-    console.log("MovieId: ", movieId);
     const existingMovie = await prismadb.movie.findUnique({
       where: {
         id: movieId,
@@ -27,7 +26,6 @@ export async function DELETE(req:NextRequest) {
         favoriteId: updatedFavoriteId,
       },
     });
-    console.log(updatedFavoriteId, updatedUser);
     return Response.json(updatedUser, { status: 200 });
   } catch (error) {
     console.log(error);

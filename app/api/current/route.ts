@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "@/utils/authOptions";
 import prismadb from "@/lib/prismadb";
 import { omit } from "lodash";
 
@@ -16,12 +16,11 @@ export async function GET() {
         id: userId,
       },
     });
-    // console.log(user);
-    // console.log(omit(user, ["hashedPassword", "createdAt", "updatedAt"]));
+   
     return Response.json({
       user: omit(user, ["hashedPassword", "createdAt", "updatedAt"]),
     });
   } catch (error) {
-    Response.json({ status: 500, message: "Internal Server Error" });
+    return Response.json({ status: 500, message: "Internal Server Error" });
   }
 }

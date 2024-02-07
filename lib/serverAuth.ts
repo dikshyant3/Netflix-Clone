@@ -1,7 +1,7 @@
 // import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import prismadb from '@/lib/prismadb';
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/utils/authOptions";
 
 const serverAuth = async () => {
   const session = await getServerSession(authOptions);
@@ -19,7 +19,6 @@ const serverAuth = async () => {
   if (!currentUser) {
     throw new Error('Not signed in');
   }
-  console.log(currentUser);
   return { currentUser };
 }
 

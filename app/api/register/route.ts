@@ -6,12 +6,6 @@ export const POST = async (request: any) => {
   try {
     const { email, name, password } = await request.json();
 
-    // console.log(email,name,password)
-
-    // if (!email || typeof email !== 'string' || !email.trim()) {
-    //   return new NextResponse("Invalid email", { status: 400 });
-    // }
-
     const existingUser = await prismadb.user.findUnique({
       where: {
         email:email,

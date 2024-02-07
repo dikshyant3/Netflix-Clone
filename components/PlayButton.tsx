@@ -9,7 +9,6 @@ interface PlayButtonProps {
 }
 
 function PlayButton({ movieId }: PlayButtonProps) {
-    // console.log("movieId is" ,movieId)
     const router = useRouter();
     return (
         <button

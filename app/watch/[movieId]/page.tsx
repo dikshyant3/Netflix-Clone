@@ -9,11 +9,8 @@ import { NextRequest } from "next/server";
 
 const Watch = ({ params }: { params: { movieId: string } }) => {
   // const movieId = params.movieId;
-  console.log("before")
   const { data, error } = useMovie(params.movieId);
-  debugger
-  console.log("After", data);
-  console.log("After", error);
+
 
 
   return (

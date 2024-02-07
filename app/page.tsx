@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
-import { authOptions } from "./api/auth/[...nextauth]/route"
+import { authOptions } from "@/utils/authOptions";
 import Navbar from "@/components/Navbar"
 import Billboard from "@/components/Billboard"
 import Movies from "@/components/Movies"

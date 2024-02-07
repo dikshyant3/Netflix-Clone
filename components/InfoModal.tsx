@@ -18,7 +18,6 @@ const InfoModal = ({ visible, onClose }: InfoModalProps) => {
 
     const { movieId } = useInfoModal();
     const { data = {} } = useMovie(movieId);
-    console.log(data);
 
     useEffect(() => {
         setIsVisible(!!visible);
