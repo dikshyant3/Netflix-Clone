@@ -27,7 +27,6 @@ const InfoModal = ({ visible, onClose }: InfoModalProps) => {
         setIsVisible(false);
         setTimeout(() => {
             onClose();
-
         }, 300)
 
     }, [onClose])

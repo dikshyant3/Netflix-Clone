@@ -1,7 +1,7 @@
 'use client'
 
 
-import { useCallback, useState } from 'react';
+import { useCallback, useState, Suspense } from 'react';
 import axios from 'axios';
 import Input from '@/components/Input';
 import { signIn } from 'next-auth/react'
@@ -10,12 +10,13 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 
-const Auth = () => {
+const AuthPage = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const searchParams = useSearchParams();
+
 
   const [variant, setVariant] = useState('login');
 
@@ -53,6 +54,7 @@ const Auth = () => {
   }, [email, name, password, login]);
 
   return (
+
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
       <div className="bg-black w-full h-full lg:bg-opacity-50">
         <nav className="px-12 py-5">
@@ -91,7 +93,6 @@ const Auth = () => {
             <button onClick={variant === 'login' ? login : register} className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
               {variant === 'login' ? 'Login' : 'Sign up'}
             </button>
-
             <div className="flex items-center justify-center mt-8 gap-4 cursor-pointer">
               <div onClick={() => signIn('google', {
                 callbackUrl: searchParams.get("callbackUrl") || "/profiles",
@@ -103,9 +104,7 @@ const Auth = () => {
               })} className="w-10 h-10 flex items-center justify-center rounded-full bg-white hover:opacity-70 transition">
                 <FaGithub size={30} />
               </div>
-
             </div>
-
             <p className="text-neutral-500 mt-12 text-center">
               {variant === 'login' ? 'New to Netflix?' : 'Already have an account?'}
               <span onClick={toggleVariant} className="text-white ml-1 hover:underline cursor-pointer">
@@ -118,6 +117,14 @@ const Auth = () => {
       </div>
     </div>
   );
+}
+
+const Auth = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AuthPage />
+    </Suspense>
+  )
 }
 
 export default Auth;
