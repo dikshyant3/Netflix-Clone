@@ -15,8 +15,6 @@ function MovieList({ data, title }: MovieListProps) {
     if (isEmpty(data)) {
         return null;
     }
-    // console.log(data)
-
     return (
         <div className='px-4 space-y-8 mt-4 md:py-12'>
             <div>
