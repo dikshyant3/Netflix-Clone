@@ -11,7 +11,7 @@ const useMovie = (id?: string) => {
       revalidateOnFocus: false,
     }
   );
-  console.log(error);
+  // console.log(error);
   return {
     data,
     error,
