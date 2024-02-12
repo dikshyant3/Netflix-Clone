@@ -1,11 +1,9 @@
 import serverAuth from "@/lib/serverAuth";
 import { without } from "lodash";
 import prismadb from "@/lib/prismadb";
-// import useBillboard from "@/hooks/useBillboard";
 import { NextRequest } from "next/server";
 
 export async function DELETE(req:NextRequest) {
-  // const { data } = useBillboard();
   try {
     const { currentUser } = await serverAuth();
     const {movieId} = await req.json();
