@@ -1,12 +1,11 @@
 import prismadb from "@/lib/prismadb";
 import serverAuth from "@/lib/serverAuth";
 
-// import { NextRequest,NextResponse } from 'next/server';
+export const dynamic = "force-dynamic"
 
 export async function GET() {
   try {
     await serverAuth();
-    // const moviesCollection = prismadb.collection('movies');
     const moviesCount = await prismadb.movie.count();
     const randomIndex = Math.floor(Math.random() * moviesCount);
 
