@@ -2,7 +2,6 @@ import serverAuth from "@/lib/serverAuth";
 import prismadb from "@/lib/prismadb";
 import { NextRequest } from "next/server";
 
-export const dynamic = "force-dynamic"
 
 
 export async function POST(req: NextRequest) {

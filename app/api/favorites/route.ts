@@ -1,6 +1,8 @@
 import serverAuth from "@/lib/serverAuth";
 import prismadb from "@/lib/prismadb";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const { currentUser } = await serverAuth();
