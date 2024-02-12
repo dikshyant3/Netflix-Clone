@@ -29,7 +29,7 @@ const InfoModal = ({ visible, onClose }: InfoModalProps) => {
             onClose();
         }, 300)
 
-    }, [onClose])
+    }, [])
 
     if (!visible) {
         return null
