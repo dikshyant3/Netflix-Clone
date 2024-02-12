@@ -3,6 +3,8 @@ import { authOptions } from "@/utils/authOptions";
 import prismadb from "@/lib/prismadb";
 import { omit } from "lodash";
 
+export const dynamic = "force-dynamic"
+
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);

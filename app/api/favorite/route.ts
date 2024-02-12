@@ -1,7 +1,9 @@
 import serverAuth from "@/lib/serverAuth";
 import prismadb from "@/lib/prismadb";
-// import useBillboard from "@/hooks/useBillboard";
 import { NextRequest } from "next/server";
+
+export const dynamic = "force-dynamic"
+
 
 export async function POST(req: NextRequest) {
   try {
